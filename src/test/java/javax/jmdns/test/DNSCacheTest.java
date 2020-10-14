@@ -1,7 +1,7 @@
 /**
  *
  */
-package javax.jmdns.impl;
+package javax.jmdns.test;
 
 import static org.junit.Assert.*;
 
@@ -12,8 +12,6 @@ import javax.jmdns.impl.constants.DNSRecordClass;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.List;
 
 /**
  *
@@ -38,6 +36,7 @@ public class DNSCacheTest {
         DNSEntry entry = new DNSRecord.Service("pierre._home-sharing._tcp.local.", DNSRecordClass.CLASS_IN, false, 0, 0, 0, 0, "panoramix.local.");
         cache.addDNSEntry(entry);
         assertEquals("Could not retrieve the value we inserted", entry, cache.getDNSEntry(entry));
+
     }
 
     @Test
@@ -50,9 +49,6 @@ public class DNSCacheTest {
         cache.removeDNSEntry(entry);
         assertNull("Could not remove the value we inserted", cache.getDNSEntry(entry));
 
-        List<DNSEntry> values = cache.get(entry.getKey());
-        assertTrue("Cache still has entries for the key", values == null || values.isEmpty());
-        assertNull("Cache contains key with no entries", values);
     }
 
 }

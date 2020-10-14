@@ -71,8 +71,8 @@ public class RegisterService {
             for (Enumeration<String> enumerator = LogManager.getLogManager().getLoggerNames(); enumerator.hasMoreElements();) {
                 String loggerName = enumerator.nextElement();
                 Logger logger = LoggerFactory.getLogger(loggerName);
-                logger.addHandler(handler);
-                logger.setLevel(Level.FINEST);
+                //logger.addHandler(handler);
+                //logger.setLevel(Level.FINEST);
             }
         }
 

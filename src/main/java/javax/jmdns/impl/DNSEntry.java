@@ -20,7 +20,7 @@ import javax.jmdns.impl.constants.DNSRecordType;
  * @author Arthur van Hoff, Pierre Frisch, Rick Blair
  */
 public abstract class DNSEntry {
-    // private static Logger logger = LoggerFactory.getLogger(DNSEntry.class.getName());
+    // //private static Logger logger = LoggerFactory.getLogger(DNSEntry.class.getName());
     private final String         _key;
 
     private final String         _name;
@@ -44,7 +44,7 @@ public abstract class DNSEntry {
         _recordType = type;
         _dnsClass = recordClass;
         _unique = unique;
-        _qualifiedNameMap = ServiceTypeDecoder.decodeQualifiedNameMapForType(this.getName());
+        _qualifiedNameMap = ServiceInfoImpl.decodeQualifiedNameMapForType(this.getName());
         String domain = _qualifiedNameMap.get(Fields.Domain);
         String protocol = _qualifiedNameMap.get(Fields.Protocol);
         String application = _qualifiedNameMap.get(Fields.Application);

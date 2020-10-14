@@ -64,8 +64,8 @@ public class DiscoverServices {
             if (log) {
                 Logger logger = LoggerFactory.getLogger(JmDNS.class.getName());
                 ConsoleHandler handler = new ConsoleHandler();
-                logger.addHandler(handler);
-                logger.setLevel(Level.FINER);
+                //logger.addHandler(handler);
+                //logger.setLevel(Level.FINER);
                 handler.setLevel(Level.FINER);
             }
 

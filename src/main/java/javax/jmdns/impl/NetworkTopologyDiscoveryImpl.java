@@ -12,8 +12,6 @@ import java.util.Set;
 
 import javax.jmdns.NetworkTopologyDiscovery;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * This class implements NetworkTopologyDiscovery.
@@ -21,7 +19,7 @@ import org.slf4j.LoggerFactory;
  * @author Pierre Frisch
  */
 public class NetworkTopologyDiscoveryImpl implements NetworkTopologyDiscovery {
-    private final static Logger logger = LoggerFactory.getLogger(NetworkTopologyDiscoveryImpl.class.getName());
+   // private final static Logger logger = LoggerFactory.getLogger(NetworkTopologyDiscoveryImpl.class.getName());
 
     /**
      *
@@ -43,14 +41,14 @@ public class NetworkTopologyDiscoveryImpl implements NetworkTopologyDiscovery {
                 NetworkInterface nif = nifs.nextElement();
                 for (Enumeration<InetAddress> iaenum = nif.getInetAddresses(); iaenum.hasMoreElements();) {
                     InetAddress interfaceAddress = iaenum.nextElement();
-                    logger.trace("Found NetworkInterface/InetAddress: {} -- {}",  nif , interfaceAddress);
+                    //logger.trace("Found NetworkInterface/InetAddress: {} -- {}",  nif , interfaceAddress);
                     if (useInetAddress(nif, interfaceAddress)) {
                         result.add(interfaceAddress);
                     }
                 }
             }
         } catch (SocketException se) {
-            logger.warn("Error while fetching network interfaces addresses: " + se);
+            //logger.warn("Error while fetching network interfaces addresses: " + se);
         }
         return result.toArray(new InetAddress[result.size()]);
     }

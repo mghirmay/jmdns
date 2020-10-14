@@ -14,8 +14,7 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 
 import javax.jmdns.NetworkTopologyDiscovery;
 import javax.jmdns.impl.constants.DNSConstants;
@@ -30,7 +29,7 @@ import javax.jmdns.impl.tasks.DNSTask;
  * @author Pierre Frisch, Werner Randelshofer
  */
 public class HostInfo implements DNSStatefulObject {
-    private static Logger       logger = LoggerFactory.getLogger(HostInfo.class.getName());
+    //private static Logger       logger = LoggerFactory.getLogger(HostInfo.class.getName());
 
     protected String            _name;
 
@@ -83,7 +82,7 @@ public class HostInfo implements DNSStatefulObject {
                     }
                 }
                 if (addr.isLoopbackAddress()) {
-                    logger.warn("Could not find any address beside the loopback.");
+                    //logger.warn("Could not find any address beside the loopback.");
                 }
             }
             if (aName.length() == 0) {
@@ -93,7 +92,7 @@ public class HostInfo implements DNSStatefulObject {
                 aName = ((jmdnsName != null) && (jmdnsName.length() > 0) ? jmdnsName : addr.getHostAddress());
             }
         } catch (final IOException e) {
-            logger.warn("Could not initialize the host network interface on " + address + "because of an error: " + e.getMessage(), e);
+            //logger.warn("Could not initialize the host network interface on " + address + "because of an error: " + e.getMessage(), e);
             // This is only used for running unit test on Debian / Ubuntu
             addr = loopbackAddress();
             aName = ((jmdnsName != null) && (jmdnsName.length() > 0) ? jmdnsName : "computer");
@@ -127,7 +126,7 @@ public class HostInfo implements DNSStatefulObject {
             try {
                 _interfaze = NetworkInterface.getByInetAddress(address);
             } catch (Exception exception) {
-                logger.warn("LocalHostInfo() exception ", exception);
+                //logger.warn("LocalHostInfo() exception ", exception);
             }
         }
     }

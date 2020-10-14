@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.jmdns</groupId>
 	<artifactId>jmdns</artifactId>
-	<version>3.5.6-SNAPSHOT</version>
+	<version>3.5.6</version>
 	<name>JmDNS</name>
 	<packaging>jar</packaging>
 	<description>JmDNS is a Java implementation of multi-cast DNS and can be used for service registration and discovery in local area networks. JmDNS is fully compatible with Apple's Bonjour.
@@ -50,11 +50,6 @@ The project was originally started in December 2002 by Arthur van Hoff at Strang
 	</licenses>
 	<dependencies>
 		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>1.7.25</version>
-		</dependency>
-		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
@@ -64,18 +59,6 @@ The project was originally started in December 2002 by Arthur van Hoff at Strang
 			<groupId>org.easymock</groupId>
 			<artifactId>easymock</artifactId>
 			<version>3.3.1</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.powermock</groupId>
-			<artifactId>powermock-module-junit4</artifactId>
-			<version>2.0.7</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.powermock</groupId>
-			<artifactId>powermock-api-easymock</artifactId>
-			<version>2.0.7</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
@@ -90,7 +73,7 @@ The project was originally started in December 2002 by Arthur van Hoff at Strang
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.3</version>
+				<version>3.8.1</version>
 				<configuration>
 					<source>${jvm.version}</source>
 					<target>${jvm.version}</target>
@@ -121,39 +104,11 @@ The project was originally started in December 2002 by Arthur van Hoff at Strang
 					<skipTests>true</skipTests>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<version>2.6</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<archive>
-						<addMavenDescriptor />
-						<compress />
-						<forced>true</forced>
-						<index>true</index>
-						<manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
-						<manifest>
-							<mainClass>javax.jmdns.impl.JmDNSImpl</mainClass>
-							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-							<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
-						</manifest>
-						<manifestEntries>
-							<Implementation-Date>${maven.build.timestamp}</Implementation-Date>
-						</manifestEntries>
-					</archive>
-				</configuration>
-			</plugin>
+
 			<plugin>
 				<groupId>org.apache.felix</groupId>
 				<artifactId>maven-bundle-plugin</artifactId>
-				<version>2.5.4</version>
+				<version>4.2.1</version>
 				<extensions>true</extensions>
 				<configuration>
 					<manifestLocation>${project.build.outputDirectory}/META-INF</manifestLocation>
@@ -176,25 +131,6 @@ The project was originally started in December 2002 by Arthur van Hoff at Strang
 						</goals>
 					</execution>
 				</executions>
-			</plugin>
-			<plugin>
-			    <groupId>org.apache.maven.plugins</groupId>
-			    <artifactId>maven-javadoc-plugin</artifactId>
-			    <version>2.10.3</version>
-			    <configuration>
-			        <outputDirectory>${project.build.directory}/javadoc</outputDirectory>
-			    </configuration>
-			    <executions>
-			        <execution>
-			            <id>attach-javadocs</id>
-           			 	<goals>
-		            	    <goal>jar</goal>
-        			    </goals>
-			            <configuration>
-            			    <additionalparam>${javadoc.opts}</additionalparam>
-			            </configuration>
-			        </execution>
-			    </executions>
 			</plugin>
 		</plugins>
 		<pluginManagement>
@@ -231,7 +167,7 @@ The project was originally started in December 2002 by Arthur van Hoff at Strang
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
-		<jvm.version>1.6</jvm.version>
+		<jvm.version>14</jvm.version>
 	</properties>
 
 	<profiles>
@@ -260,6 +196,6 @@ The project was originally started in December 2002 by Arthur van Hoff at Strang
       <properties>
         <javadoc.opts>-Xdoclint:none</javadoc.opts>
       </properties>
-		</profile>
+    </profile>
 	</profiles>
 </project>

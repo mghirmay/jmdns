@@ -6,8 +6,6 @@ import java.io.OutputStream;
 import java.nio.charset.Charset;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * This class contains all the byte shifting 
@@ -16,7 +14,7 @@ import org.slf4j.LoggerFactory;
  *
  */
 public class ByteWrangler {
-    private static Logger logger = LoggerFactory.getLogger(ByteWrangler.class.getName());
+    //private static Logger logger = LoggerFactory.getLogger(ByteWrangler.class.getName());
 
     /**
      * Maximum number of bytes a value can consist of.
@@ -141,7 +139,7 @@ public class ByteWrangler {
                     }
                     byte data[] = out2.toByteArray();
                     if (data.length > MAX_VALUE_LENGTH) {
-                        logger.warn("Cannot have individual values larger that 255 chars. Offending value: {}", key + (val == null ? "" : "=" + val));
+                        //logger.warn("Cannot have individual values larger that 255 chars. Offending value: {}", key + (val == null ? "" : "=" + val));
                         return EMPTY_TXT;
                     }
                     out.write((byte) data.length);
@@ -162,7 +160,7 @@ public class ByteWrangler {
         writeUTF(out2, text);
         final byte data[] = out2.toByteArray();
         if (data.length > MAX_VALUE_LENGTH) {
-            logger.warn("Cannot have individual values larger that 255 chars. Offending value: {}", text);
+            //logger.warn("Cannot have individual values larger that 255 chars. Offending value: {}", text);
             return EMPTY_TXT;
         }
         out.write((byte) data.length);

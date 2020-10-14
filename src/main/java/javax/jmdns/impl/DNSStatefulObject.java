@@ -9,8 +9,7 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 
 import javax.jmdns.impl.constants.DNSState;
 import javax.jmdns.impl.tasks.DNSTask;
@@ -32,7 +31,7 @@ public interface DNSStatefulObject {
      * @author Pierre Frisch
      */
     public static final class DNSStatefulObjectSemaphore {
-        private static Logger                          logger = LoggerFactory.getLogger(DNSStatefulObjectSemaphore.class.getName());
+        //private static Logger                          logger = LoggerFactory.getLogger(DNSStatefulObjectSemaphore.class.getName());
 
         private final String                           _name;
 
@@ -66,7 +65,7 @@ public interface DNSStatefulObject {
             try {
                 semaphore.tryAcquire(timeout, TimeUnit.MILLISECONDS);
             } catch (InterruptedException exception) {
-                logger.debug("Exception ", exception);
+                //logger.debug("Exception ", exception);
             }
         }
 
@@ -104,7 +103,7 @@ public interface DNSStatefulObject {
     }
 
     public static class DefaultImplementation extends ReentrantLock implements DNSStatefulObject {
-        private static Logger                    logger           = LoggerFactory.getLogger(DefaultImplementation.class.getName());
+        //private static Logger                    logger           = LoggerFactory.getLogger(DefaultImplementation.class.getName());
 
         private static final long                serialVersionUID = -3264781576883412227L;
 
@@ -223,7 +222,7 @@ public interface DNSStatefulObject {
                     if (this._task == task) {
                         this.setState(this._state.advance());
                     } else {
-                        logger.warn("Trying to advance state whhen not the owner. owner: {} perpetrator: {}", this._task, task);
+                        //logger.warn("Trying to advance state whhen not the owner. owner: {} perpetrator: {}", this._task, task);
                     }
                 } finally {
                     this.unlock();
@@ -387,9 +386,9 @@ public interface DNSStatefulObject {
                 _announcing.waitForEvent(10);
                 if (!this.isAnnounced()) {
                     if (this.willCancel() || this.willClose()) {
-                        logger.debug("Wait for announced cancelled: {}", this);
+                        //logger.debug("Wait for announced cancelled: {}", this);
                     } else {
-                        logger.warn("Wait for announced timed out: {}", this);
+                        //logger.warn("Wait for announced timed out: {}", this);
                     }
                 }
             }
@@ -408,7 +407,7 @@ public interface DNSStatefulObject {
                 // When we run multihomed we need to check twice
                 _canceling.waitForEvent(10);
                 if (!this.isCanceled() && !this.willClose()) {
-                    logger.warn("Wait for canceled timed out: {}", this);
+                    //logger.warn("Wait for canceled timed out: {}", this);
                 }
             }
             return this.isCanceled();
@@ -469,7 +468,7 @@ public interface DNSStatefulObject {
      *
      * @param task
      *            associated task
-     * @return <code>true</code> if the state was changed by this thread, <code>false</code> otherwise.
+     * @return <code>true</code if the state was changed by this thread, <code>false</code> otherwise.
      * @see DNSState#advance()
      */
     public boolean advanceState(DNSTask task);
@@ -477,7 +476,7 @@ public interface DNSStatefulObject {
     /**
      * Sets the state and notifies all objects that wait on the ServiceInfo.
      *
-     * @return <code>true</code> if the state was changed by this thread, <code>false</code> otherwise.
+     * @return <code>true</code if the state was changed by this thread, <code>false</code> otherwise.
      * @see DNSState#revert()
      */
     public boolean revertState();
@@ -485,21 +484,21 @@ public interface DNSStatefulObject {
     /**
      * Sets the state and notifies all objects that wait on the ServiceInfo.
      *
-     * @return <code>true</code> if the state was changed by this thread, <code>false</code> otherwise.
+     * @return <code>true</code if the state was changed by this thread, <code>false</code> otherwise.
      */
     public boolean cancelState();
 
     /**
      * Sets the state and notifies all objects that wait on the ServiceInfo.
      *
-     * @return <code>true</code> if the state was changed by this thread, <code>false</code> otherwise.
+     * @return <code>true</code if the state was changed by this thread, <code>false</code> otherwise.
      */
     public boolean closeState();
 
     /**
      * Sets the state and notifies all objects that wait on the ServiceInfo.
      *
-     * @return <code>true</code> if the state was changed by this thread, <code>false</code> otherwise.
+     * @return <code>true</code if the state was changed by this thread, <code>false</code> otherwise.
      */
     public boolean recoverState();
 
